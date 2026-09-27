@@ -15,6 +15,7 @@ CV personal en formato web, con estética de consola. Sitio estático: HTML, CSS
   que se adjunta al aplicar a una empresa; el que se descarga desde la web no lo lleva.
 - **Tecleo** de las líneas de prompt: cada comando se escribe solo la primera vez que su bloque entra en pantalla.
 - **Consola interactiva** al final de la página: `help`, `whoami`, `skills azure`, `theme light`, `lang en`, `pdf`… con historial (↑/↓) y autocompletado (Tab).
+- **Portada de LinkedIn** (`assets/img/linkedin-cover.png`, 1584×396): el propio fondo del sitio en modo oscuro, capturado a la medida del banner.
 - **Tarjeta social** (`assets/img/og.png`, 1200×630) y **datos estructurados** JSON-LD `Person`, para que el link se vea bien al compartirlo y Google entienda de quién es la página. La tarjeta se regenera con `pwsh tools/build-og.ps1` desde `tools/og/og.html`.
 - **Tipografía autoalojada** (JetBrains Mono, ~120 KB): sin petición bloqueante a Google Fonts ni fuga de IPs a terceros. Se regenera con `python tools/fetch-fonts.py`.
 - Responsive y navegable por teclado.
@@ -47,7 +48,7 @@ assets/
   pdf/              PDFs generados (versionados)
 tools/build-pdf.ps1 regenera los PDFs
 tools/fetch-fonts.py  reautoaloja las fuentes
-tools/build-og.ps1  regenera la tarjeta social
+tools/build-og.ps1  regenera la tarjeta social y la portada
 input/              fuentes originales (ignorado por git)
 ```
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+  Source for the LinkedIn cover (assets/img/linkedin-cover.png, 1584x396).
+
+  Same background the site paints in dark mode: base colour, the radial
+  washes, the grid and the scanlines - only the gradient radii are widened,
+  because this canvas is far wider and shorter than a page.
+
+  The art lives in a fixed 1584x396 .cover box rather than on <body>:
+  headless Chrome on Windows will not give a window shorter than ~302px,
+  so the page is rendered taller and the shot is cropped back down to the
+  box. Anything painted on <body> would be clipped at that 302px line.
+
+  Rendered by tools/build-og.ps1; not linked from the site.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body { background: #0b0f14; }
+
+  .cover {
+    position: relative;
+    width: 1584px;
+    height: 396px;
+    overflow: hidden;
+    background-color: #0b0f14;
+    background-image:
+      radial-gradient(1500px 620px at 6% -35%, rgba(56, 189, 248, .22), transparent 62%),
+      radial-gradient(1250px 560px at 97% -15%, rgba(74, 222, 128, .18), transparent 62%),
+      radial-gradient(1000px 520px at 52% 145%, rgba(199, 146, 234, .12), transparent 62%);
+  }
+
+  .cover > div { position: absolute; inset: 0; }
+
+  .grid {
+    background-image:
+      linear-gradient(rgba(205, 217, 229, .06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(205, 217, 229, .06) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .scanlines {
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, .022) 0 1px,
+      transparent 1px 3px
+    );
+  }
+
+  /* keeps the edges from looking flat wherever LinkedIn crops */
+  .vignette {
+    background: radial-gradient(115% 150% at 50% 45%, transparent 50%, rgba(0, 0, 0, .5) 100%);
+  }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="grid"></div>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+  </div>
+</body>
+</html>
