@@ -15,6 +15,12 @@ CV personal en formato web, con estética de consola. Sitio estático: HTML, CSS
   que se adjunta al aplicar a una empresa; el que se descarga desde la web no lo lleva.
 - **Tecleo** de las líneas de prompt: cada comando se escribe solo la primera vez que su bloque entra en pantalla.
 - **Consola interactiva** al final de la página: `help`, `whoami`, `skills azure`, `theme light`, `lang en`, `pdf`… con historial (↑/↓) y autocompletado (Tab).
+- **Analítica** con GoatCounter (sin cookies, sin banner de consentimiento). El
+  script se inyecta desde JavaScript y **solo en el host de producción**: las
+  compilaciones de PDF y de imágenes renderizan la página desde `127.0.0.1` y el
+  trabajo local corre en `localhost`, así que ninguno cuenta como visita. Además
+  de las visitas se registra un evento por cada **descarga del PDF**.
+  Panel: `https://rene.goatcounter.com`
 - **Portada de LinkedIn** (`assets/img/linkedin-cover.png`, 1584×396): el propio fondo del sitio en modo oscuro, capturado a la medida del banner.
 - **Tarjeta social** (`assets/img/og.png`, 1200×630) y **datos estructurados** JSON-LD `Person`, para que el link se vea bien al compartirlo y Google entienda de quién es la página. La tarjeta se regenera con `pwsh tools/build-og.ps1` desde `tools/og/og.html`.
 - **Tipografía autoalojada** (JetBrains Mono, ~120 KB): sin petición bloqueante a Google Fonts ni fuga de IPs a terceros. Se regenera con `python tools/fetch-fonts.py`.

@@ -387,7 +387,7 @@
     pdf: function () {
       var a = document.getElementById("pdfBtn");
       write(fmt(t().console.pdfMsg, a.getAttribute("download")));
-      a.click();
+      a.click();          // the click handler records the download
     },
 
     theme: function (args) {
@@ -509,6 +509,43 @@
   }
 
   initFavicon();
+
+  /* ── analytics ─────────────────────────────────────
+     GoatCounter, loaded from script rather than a tag in the HTML so it
+     can be skipped off the live host. The PDF and card builds render the
+     page from 127.0.0.1, and local work runs on localhost; neither should
+     show up as a visit. No cookies, so no consent banner is needed. */
+
+  var GC_HOST = "rene-guerrero.github.io";
+  var GC_ENDPOINT = "https://rene.goatcounter.com/count";
+
+  function initAnalytics() {
+    if (location.hostname !== GC_HOST) return;
+
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://gc.zgo.at/count.js";
+    s.setAttribute("data-goatcounter", GC_ENDPOINT);
+    document.head.appendChild(s);
+  }
+
+  /* Pageviews say who looked. This says who actually took the CV away,
+     which is the number that matters. Silently does nothing when the
+     script is blocked, which ad blockers routinely do. */
+  function countDownload(file) {
+    if (!window.goatcounter || !window.goatcounter.count) return;
+    window.goatcounter.count({
+      path: "pdf-download/" + file,
+      title: "PDF download",
+      event: true
+    });
+  }
+
+  initAnalytics();
+
+  document.getElementById("pdfBtn").addEventListener("click", function () {
+    countDownload(this.getAttribute("download"));
+  });
 
   /* ── the title types a line while the tab is in the background ── */
 
