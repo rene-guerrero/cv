@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--
+  Source for the Open Graph card (assets/img/og.png).
+  Rendered at exactly 1200x630 by tools/build-og.ps1 — not linked from the site.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    background: #0b0f14;
+    background-image:
+      radial-gradient(900px 500px at 10% -20%, rgba(56, 189, 248, .14), transparent 60%),
+      radial-gradient(700px 420px at 105% 10%, rgba(74, 222, 128, .12), transparent 60%);
+    color: #cdd9e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .window {
+    width: 1080px;
+    height: 500px;
+    flex: 0 0 auto;   /* never let the flex parent squeeze it */
+    border: 1px solid #1f2b38;
+    border-radius: 14px;
+    background: #0d1219;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .6);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 14px 18px;
+    background: #10161e;
+    border-bottom: 1px solid #1f2b38;
+  }
+  .dot { width: 13px; height: 13px; border-radius: 50%; }
+  .r { background: #ff5f57; } .y { background: #febc2e; } .g { background: #28c840; }
+  .bar span {
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    color: #7d8da0;
+    margin-right: 48px;
+  }
+
+  .body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 44px;
+    padding: 40px 52px;
+  }
+
+  img {
+    width: 230px;
+    height: 230px;
+    border-radius: 10px;
+    border: 1px solid #1f2b38;
+    object-fit: cover;
+    flex: 0 0 auto;
+  }
+
+  .cmd { font-size: 19px; color: #7d8da0; margin-bottom: 18px; }
+  .prompt { color: #4ade80; }
+  .path { color: #38bdf8; }
+  .sigil { color: #c792ea; }
+  .typed { color: #cdd9e5; }
+
+  h1 {
+    font-size: 54px;
+    font-weight: 700;
+    letter-spacing: -.5px;
+    line-height: 1.1;
+    color: #e8eef5;
+  }
+
+  .role {
+    font-size: 27px;
+    font-weight: 500;
+    color: #4ade80;
+    margin-top: 10px;
+  }
+
+  .stack {
+    font-size: 21px;
+    color: #7d8da0;
+    margin-top: 6px;
+  }
+
+  .tags { display: flex; gap: 10px; margin-top: 26px; }
+  .tag {
+    font-size: 16px;
+    padding: 6px 13px;
+    border: 1px solid #1f2b38;
+    border-radius: 999px;
+    background: #131b24;
+    color: #9fb0c3;
+  }
+  .tag.live { color: #4ade80; border-color: #2f6b47; }
+</style>
+</head>
+<body>
+  <div class="window">
+    <div class="bar">
+      <i class="dot r"></i><i class="dot y"></i><i class="dot g"></i>
+      <span>~/rene-guerrero/cv — zsh</span>
+    </div>
+    <div class="body">
+      <img src="../../assets/img/me-512.jpg" alt="">
+      <div>
+        <p class="cmd"><span class="prompt">rene@cv</span>:<span class="path">~</span><span class="sigil">$</span> <span class="typed">whoami</span></p>
+        <h1>René Guerrero Pérez</h1>
+        <p class="role">Senior Full Stack Software Engineer</p>
+        <p class="stack">C# / .NET · Angular · Azure · SQL Server</p>
+        <div class="tags">
+          <span class="tag live">● Open to opportunities</span>
+          <span class="tag">8+ years</span>
+          <span class="tag">Remote · UTC−5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

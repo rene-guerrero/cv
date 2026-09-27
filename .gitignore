@@ -1,0 +1,17 @@
+input/
+
+# personal data that must never reach the public repo
+tools/private.local.json
+private/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Node
+node_modules/
+dist/
