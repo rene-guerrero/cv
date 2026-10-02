@@ -95,6 +95,90 @@
     });
   }
 
+  /* Newest four of window.CERTS (tools/build-certs.py fills it from the
+     LinkedIn export). The section stays hidden while the list is empty. */
+  var CERTS_SHOWN = 4;
+  var LINKEDIN_CERTS = "https://www.linkedin.com/in/rguerrero00/details/certifications/";
+
+  function certDate(iso, lang) {
+    var m = /^(\d{4})-(\d{2})/.exec(iso || "");
+    if (!m) return "";
+    return new Date(Date.UTC(+m[1], +m[2] - 1, 1)).toLocaleDateString(lang, {
+      month: "short", year: "numeric", timeZone: "UTC"
+    });
+  }
+
+  function metaRow(cls, text) {
+    var p = el("p", cls, text ? escapeHtml(text) : "&nbsp;");
+    if (text) p.title = text;
+    return p;
+  }
+
+  function extLink(cls, text, href) {
+    var a = el("a", cls, escapeHtml(text) + " ↗");
+    a.href = href;
+    a.target = "_blank";
+    a.rel = "noopener";
+    return a;
+  }
+
+  function renderCerts(t, lang) {
+    var section = document.getElementById("certs-section");
+    var host = document.getElementById("certs");
+    var all = (window.CERTS || []).slice().sort(function (a, b) {
+      return (b.issued || "").localeCompare(a.issued || "");
+    });
+
+    host.textContent = "";
+    section.hidden = !all.length;
+    if (!all.length) return;
+
+    all.slice(0, CERTS_SHOWN).forEach(function (c) {
+      var card = el("article", "card cert");
+      var head = el("div", "cert__head");
+      if (c.logo) {
+        var img = el("img", "cert__logo");
+        img.src = c.logo;
+        img.alt = "";
+        img.width = img.height = 40;
+        img.loading = "lazy";
+        head.appendChild(img);
+      }
+      var who = el("div", "cert__who");
+      var name = el("h3", "card__title cert__name", escapeHtml(c.name));
+      name.title = c.name;
+      who.appendChild(name);
+      if (c.issuer) {
+        var issuer = el("p", "cert__issuer", escapeHtml(c.issuer));
+        issuer.title = c.issuer;
+        who.appendChild(issuer);
+      }
+      head.appendChild(who);
+      card.appendChild(head);
+
+      /* both rows always exist (nbsp when empty) so cards line up */
+      var when = [];
+      if (c.issued) when.push(t.certs.issued + " " + certDate(c.issued, lang));
+      if (c.expires) when.push(t.certs.expires + " " + certDate(c.expires, lang));
+      card.appendChild(metaRow("cert__dates", when.join(" · ")));
+      card.appendChild(metaRow("cert__id", c.id ? "ID " + c.id : ""));
+
+      if (/^https?:\/\//i.test(c.url || "")) {
+        card.appendChild(extLink("cert__link", t.certs.credential, c.url));
+      }
+
+      var li = el("li");
+      li.appendChild(card);
+      host.appendChild(li);
+    });
+
+    var more = el("div", "card cert cert--more");
+    more.appendChild(extLink(null, t.certs.more, LINKEDIN_CERTS));
+    var last = el("li");
+    last.appendChild(more);
+    host.appendChild(last);
+  }
+
   function applyLang(lang) {
     var t = window.CV[lang];
     if (!t) return;
@@ -132,6 +216,7 @@
 
     renderExperience(t);
     renderSkills(t);
+    renderCerts(t, lang);
     resetConsole(t);
   }
 
@@ -345,6 +430,7 @@
     about: function () { jump("about", "about.md"); },
     experience: function () { jump("experience-section", "experience/"); },
     education: function () { jump("education-section", "education.txt"); },
+    certs: function () { jump("certs-section", "certifications/"); },
 
     skills: function (args) {
       var tr = t();

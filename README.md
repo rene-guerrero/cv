@@ -24,6 +24,7 @@ CV personal en formato web, con estética de consola. Sitio estático: HTML, CSS
 - **Portada de LinkedIn** (`assets/img/linkedin-cover.png`, 1584×396): el propio fondo del sitio en modo oscuro, capturado a la medida del banner.
 - **Tarjeta social** (`assets/img/og.png`, 1200×630) y **datos estructurados** JSON-LD `Person`, para que el link se vea bien al compartirlo y Google entienda de quién es la página. La tarjeta se regenera con `pwsh tools/build-og.ps1` desde `tools/og/og.html`.
 - **Tipografía autoalojada** (JetBrains Mono, ~120 KB): sin petición bloqueante a Google Fonts ni fuga de IPs a terceros. Se regenera con `python tools/fetch-fonts.py`.
+- **Certificaciones** — tarjetas con scroll horizontal (las 4 más recientes + enlace a LinkedIn). LinkedIn no tiene API pública ni permite scraping, así que se alimenta de su exportación oficial: pedir *Certifications* en Ajustes → Privacidad de datos → Obtener una copia de tus datos y ejecutar `python tools/build-certs.py Certifications.csv`, que regenera `assets/js/certs.js`. La web ordena por fecha y muestra las nuevas sin tocar código; con la lista vacía la sección se oculta.
 - Responsive y navegable por teclado.
 
 ### Sobre `prefers-reduced-motion`

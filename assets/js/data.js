@@ -47,6 +47,7 @@ window.CV = {
         experience: "salta a la experiencia",
         skills: "lista las habilidades — skills azure para filtrar",
         education: "salta a la educación",
+        certs: "salta a las certificaciones",
         contact: "formas de contacto",
         open: "abre un perfil — open github",
         pdf: "descarga el CV en PDF",
@@ -112,6 +113,13 @@ window.CV = {
       degree: "Ingeniería de Software",
       school: "Universidad de Holguín",
       place: "Holguín, Cuba"
+    },
+    certs: {
+      title: "Certificaciones y habilidades aplicadas",
+      issued: "Emitido",
+      expires: "Vence",
+      credential: "Ver credencial",
+      more: "Ver más en LinkedIn"
     }
   },
 
@@ -162,6 +170,7 @@ window.CV = {
         experience: "jump to the experience",
         skills: "list skills — skills azure to filter",
         education: "jump to the education",
+        certs: "jump to the certifications",
         contact: "ways to reach me",
         open: "open a profile — open github",
         pdf: "download the CV as PDF",
@@ -227,6 +236,13 @@ window.CV = {
       degree: "Software Engineering",
       school: "University of Holguín",
       place: "Holguín, Cuba"
+    },
+    certs: {
+      title: "Certifications and Applied Skills",
+      issued: "Issued",
+      expires: "Expires",
+      credential: "Show credential",
+      more: "See more on LinkedIn"
     }
   }
 };
