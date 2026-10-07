@@ -5,7 +5,7 @@ CV personal en formato web, con estética de consola. Sitio estático: HTML, CSS
 ## Características
 
 - **Tema claro / oscuro** — detecta la preferencia del sistema y recuerda la elección (`localStorage`).
-- **Español / Inglés** — todo el contenido vive en [`assets/js/data.js`](assets/js/data.js); el idioma inicial se toma del navegador y también se recuerda.
+- **Español / Inglés** — todo el contenido vive en [`assets/js/data.js`](assets/js/data.js); cada idioma tiene su propia página (`/` y `/es/`).
 - **Descarga en PDF** — el botón `PDF` descarga un fichero ya generado (`assets/pdf/`), uno por idioma. Se construyen con [`tools/build-pdf.ps1`](tools/build-pdf.ps1), que imprime `index.html` con la hoja de estilos de impresión usando Chrome headless.
 - El **teléfono no está en ninguna parte de este repositorio**. Ocultarlo con CSS
   no habría servido: seguiría en el HTML, legible para buscadores y scrapers — y el
@@ -23,29 +23,36 @@ CV personal en formato web, con estética de consola. Sitio estático: HTML, CSS
   Panel: `https://rene.goatcounter.com`
 - **Portada de LinkedIn** (`assets/img/linkedin-cover.png`, 1584×396): el propio fondo del sitio en modo oscuro, capturado a la medida del banner.
 - **Tarjeta social** (`assets/img/og.png`, 1200×630) y **datos estructurados** JSON-LD `Person`, para que el link se vea bien al compartirlo y Google entienda de quién es la página. La tarjeta se regenera con `pwsh tools/build-og.ps1` desde `tools/og/og.html`.
-- **Tipografía autoalojada** (JetBrains Mono, ~120 KB): sin petición bloqueante a Google Fonts ni fuga de IPs a terceros. Se regenera con `python tools/fetch-fonts.py`.
-- **Certificaciones** — tarjetas con scroll horizontal (las 4 más recientes + enlace a LinkedIn). LinkedIn no tiene API pública ni permite scraping, así que se alimenta de su exportación oficial: pedir *Certifications* en Ajustes → Privacidad de datos → Obtener una copia de tus datos y ejecutar `python tools/build-certs.py Certifications.csv`, que regenera `assets/js/certs.js`. La web ordena por fecha y muestra las nuevas sin tocar código; con la lista vacía la sección se oculta.
+- **Tipografía autoalojada** (JetBrains Mono variable, ~40 KB): sin petición bloqueante a Google Fonts ni fuga de IPs a terceros. Se regenera con `python tools/fetch-fonts.py`.
+- **Certificaciones** — tarjetas con scroll horizontal (todas + enlace a LinkedIn). LinkedIn no tiene API pública ni permite scraping, así que se alimenta de su exportación oficial: pedir *Certifications* en Ajustes → Privacidad de datos → Obtener una copia de tus datos y ejecutar `python tools/build-certs.py Certifications.csv`, que regenera `assets/js/certs.js`. La web ordena por fecha y muestra las nuevas sin tocar código; con la lista vacía la sección se oculta.
 - Responsive y navegable por teclado.
 
 ### Sobre `prefers-reduced-motion`
 
-La página **no** respeta esta preferencia para sus efectos decorativos (tecleo,
-rejilla de fondo, punto de disponibilidad), por decisión explícita: son la
-gracia del diseño, no mueven el layout y ninguno parpadea de forma agresiva.
-Sí se respeta para el desplazamiento suave y el cursor que parpadea.
+Se respeta por completo: con la preferencia activa no hay tecleo, rejilla en
+movimiento, pulso ni parpadeo del cursor, y el desplazamiento es instantáneo.
 
-Para honrarla por completo, añadir en `style.css`:
+### Una página por idioma
 
-```css
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; }
-}
+El sitio tiene dos páginas estáticas: `/` (inglés) y `/es/` (español), con
+`hreflang`, canonical y metadatos propios, y con la experiencia, las habilidades
+y el perfil ya escritos en el HTML. Así buscadores, previsualizaciones de
+enlaces y ATS que no ejecutan JS ven el CV completo en el idioma correcto. Los
+botones ES/EN son enlaces entre las dos páginas; ya no se recuerda el idioma ni
+se detecta por el navegador. `?lang=es` sigue sirviendo para imprimir el PDF.
+
+`index.html` es a la vez plantilla y salida en inglés; `es/index.html` se
+genera a partir de él. Tras editar `data.js`:
+
+```
+node tools/prerender.js
 ```
 
 ## Estructura
 
 ```
-index.html
+index.html          inglés (plantilla + salida)
+es/index.html       español (generado)
 assets/
   css/style.css     estilos + hoja de impresión (@media print)
   js/data.js        contenido del CV en ES y EN
@@ -53,6 +60,7 @@ assets/
   fonts/            JetBrains Mono (woff2, OFL)
   img/me-512.jpg    foto (recortada y redimensionada desde input/)
   pdf/              PDFs generados (versionados)
+tools/prerender.js  rellena index.html y es/index.html desde data.js
 tools/build-pdf.ps1 regenera los PDFs
 tools/fetch-fonts.py  reautoaloja las fuentes
 tools/build-og.ps1  regenera la tarjeta social y la portada
@@ -68,6 +76,7 @@ Dentro de las viñetas de experiencia se admite `**negrita**`.
 > o la descarga quedará desfasada respecto a la web:
 >
 > ```
+> node tools/prerender.js
 > pwsh tools/build-pdf.ps1
 > ```
 >

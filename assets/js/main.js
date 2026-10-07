@@ -1,7 +1,6 @@
 (function () {
   "use strict";
 
-  var STORE_LANG = "cv.lang";
   var STORE_THEME = "cv.theme";
   var root = document.documentElement;
 
@@ -33,15 +32,14 @@
 
   /* ── language ──────────────────────────────────────── */
 
+  /* Each language has its own page (/ and /es/); the page declares which one
+     in <html lang>. ?lang= overrides it so the PDF build can print either. */
+  var PAGE_LANG = root.getAttribute("lang") === "es" ? "es" : "en";
+  var BASE = root.getAttribute("data-base") || "";
+
   function detectLang() {
     var forced = new URLSearchParams(location.search).get("lang");
-    if (forced === "es" || forced === "en") return forced;
-
-    var saved = null;
-    try { saved = localStorage.getItem(STORE_LANG); } catch (e) {}
-    if (saved === "es" || saved === "en") return saved;
-    var nav = (navigator.language || "en").toLowerCase();
-    return nav.indexOf("es") === 0 ? "es" : "en";
+    return forced === "es" || forced === "en" ? forced : PAGE_LANG;
   }
 
   function renderExperience(t) {
@@ -79,6 +77,17 @@
     });
   }
 
+  function renderResults(t) {
+    var host = document.getElementById("results");
+    host.textContent = "";
+    t.about.results.forEach(function (r) {
+      var li = el("li", "result");
+      li.appendChild(el("span", "result__n", escapeHtml(r.n)));
+      li.appendChild(el("span", "result__l", escapeHtml(r.l)));
+      host.appendChild(li);
+    });
+  }
+
   function renderSkills(t) {
     var host = document.getElementById("skills");
     host.textContent = "";
@@ -88,16 +97,18 @@
       box.appendChild(el("h3", "skillgroup__name", escapeHtml(g.name)));
       var tags = el("ul", "tags");
       g.items.forEach(function (i) {
-        tags.appendChild(el("li", "tag", escapeHtml(i)));
+        var core = t.skills.core.indexOf(i) !== -1;
+        tags.appendChild(el("li", core ? "tag tag--core" : "tag", escapeHtml(i)));
       });
       box.appendChild(tags);
       host.appendChild(box);
     });
   }
 
-  /* Newest four of window.CERTS (tools/build-certs.py fills it from the
+  /* Newest CERTS_SHOWN of window.CERTS (tools/build-certs.py fills it from the
      LinkedIn export). The section stays hidden while the list is empty. */
   var CERTS_SHOWN = 4;
+  var HIDDEN_ISSUERS = ["CodinGame"];
   var LINKEDIN_CERTS = "https://www.linkedin.com/in/rguerrero00/details/certifications/";
 
   function certDate(iso, lang) {
@@ -125,7 +136,9 @@
   function renderCerts(t, lang) {
     var section = document.getElementById("certs-section");
     var host = document.getElementById("certs");
-    var all = (window.CERTS || []).slice().sort(function (a, b) {
+    var all = (window.CERTS || []).filter(function (c) {
+      return HIDDEN_ISSUERS.indexOf(c.issuer) === -1;
+    }).sort(function (a, b) {
       return (b.issued || "").localeCompare(a.issued || "");
     });
 
@@ -138,7 +151,7 @@
       var head = el("div", "cert__head");
       if (c.logo) {
         var img = el("img", "cert__logo");
-        img.src = c.logo;
+        img.src = BASE + c.logo;
         img.alt = "";
         img.width = img.height = 40;
         img.loading = "lazy";
@@ -161,10 +174,11 @@
       if (c.issued) when.push(t.certs.issued + " " + certDate(c.issued, lang));
       if (c.expires) when.push(t.certs.expires + " " + certDate(c.expires, lang));
       card.appendChild(metaRow("cert__dates", when.join(" · ")));
-      card.appendChild(metaRow("cert__id", c.id ? "ID " + c.id : ""));
 
       if (/^https?:\/\//i.test(c.url || "")) {
-        card.appendChild(extLink("cert__link", t.certs.credential, c.url));
+        /* Microsoft share links are locale-prefixed; match the page language */
+        var href = c.url.replace(/\/(es-es|en-us)\//i, lang === "es" ? "/es-es/" : "/en-us/");
+        card.appendChild(extLink("cert__link", t.certs.credential, href));
       }
 
       var li = el("li");
@@ -184,7 +198,6 @@
     if (!t) return;
 
     root.setAttribute("lang", lang);
-    try { localStorage.setItem(STORE_LANG, lang); } catch (e) {}
 
     document.querySelectorAll("[data-i18n]").forEach(function (node) {
       var v = get(t, node.getAttribute("data-i18n"));
@@ -204,18 +217,21 @@
     document.querySelectorAll("[data-lang]").forEach(function (btn) {
       var on = btn.getAttribute("data-lang") === lang;
       btn.classList.toggle("is-active", on);
-      btn.setAttribute("aria-pressed", String(on));
+      if (on) btn.setAttribute("aria-current", "true");
+      else btn.removeAttribute("aria-current");
     });
 
     document.title = "René Guerrero Pérez — " + t.hero.role;
 
-    var pdf = document.getElementById("pdfBtn");
     var file = "Rene-Guerrero-CV-" + lang.toUpperCase() + ".pdf";
-    pdf.setAttribute("href", "assets/pdf/" + file);
-    pdf.setAttribute("download", file);
+    document.querySelectorAll("[data-pdf]").forEach(function (pdf) {
+      pdf.setAttribute("href", BASE + "assets/pdf/" + file);
+      pdf.setAttribute("download", file);
+    });
 
     renderExperience(t);
     renderSkills(t);
+    renderResults(t);
     renderCerts(t, lang);
     resetConsole(t);
   }
@@ -266,12 +282,6 @@
   applyTheme(detectTheme());
   applyLang(detectLang());
 
-  document.querySelectorAll("[data-lang]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      applyLang(btn.getAttribute("data-lang"));
-    });
-  });
-
   document.getElementById("themeToggle").addEventListener("click", function () {
     applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
   });
@@ -308,9 +318,8 @@
     var nodes = Array.prototype.slice.call(document.querySelectorAll(".typed"));
     if (!nodes.length) return;
 
-    /* Deliberately NOT gated on prefers-reduced-motion: the effect is the
-       point of the page. It is short, non-looping and text-only. */
     if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     nodes.forEach(function (n) {
       n.setAttribute("data-text", n.textContent);
@@ -427,6 +436,48 @@
       write(tr.hero.location + "  ·  " + tr.hero.available, "console__line--dim");
     },
 
+    status: function () {
+      var h = t().hero;
+      write(h.available);
+      write(h.remote + "  ·  " + h.location, "console__line--dim");
+      write(h.english + ": " + h.fluent + "  ·  " + h.spanish + ": " + h.native, "console__line--dim");
+    },
+
+    highlights: function () {
+      t().console.highlights.forEach(function (line) { write("▸ " + line); });
+    },
+
+    ls: function () {
+      write("about.md  experience/  skills/  education.txt  certifications/");
+    },
+
+    cat: function (args) {
+      var tr = t();
+      var file = (args[0] || "").toLowerCase().replace(/\/$/, "");
+      if (file === "about.md") {
+        write(tr.about.p1);
+        write("");
+        write(tr.about.p2);
+      } else if (file === "education.txt") {
+        write(tr.edu.degree + " — " + tr.edu.school + ", " + tr.edu.place);
+        write(tr.edu.thesis, "console__line--dim");
+      } else if (file === "experience" || file === "skills" || file === "certifications") {
+        COMMANDS[file === "certifications" ? "certs" : file]([]);
+      } else {
+        write(file ? fmt(tr.console.noFile, args[0]) : fmt(tr.console.usage, "cat about.md"), "console__line--warn");
+      }
+    },
+
+    email: function () {
+      var addr = LINKS.mail.replace("mailto:", "");
+      write(addr);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(addr).then(function () {
+          write(t().console.copied, "console__line--dim");
+        }, function () {});
+      }
+    },
+
     about: function () { jump("about", "about.md"); },
     experience: function () { jump("experience-section", "experience/"); },
     education: function () { jump("education-section", "education.txt"); },
@@ -490,8 +541,12 @@
       var next = (want === "es" || want === "en")
         ? want
         : (root.getAttribute("lang") === "es" ? "en" : "es");
-      applyLang(next);                       // this also resets the console
+      if (next === root.getAttribute("lang")) {
+        write(fmt(t().console.langSet, next));
+        return;
+      }
       write(fmt(t().console.langSet, next));
+      location.href = document.querySelector('[data-lang="' + next + '"]').getAttribute("href");
     },
 
     clear: function () { out.textContent = ""; },
@@ -563,39 +618,6 @@
 
   initConsole();
 
-  /* ── favicon: a prompt with a blinking caret ───────── */
-
-  function initFavicon() {
-    var canvas = document.createElement("canvas");
-    canvas.width = canvas.height = 64;
-    var ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    var link = document.querySelector("link[rel='icon']");
-    var on = true;
-
-    function paint() {
-      var light = root.getAttribute("data-theme") === "light";
-      ctx.clearRect(0, 0, 64, 64);
-      ctx.fillStyle = light ? "#eef1f5" : "#0b0f14";
-      ctx.fillRect(0, 0, 64, 64);
-      ctx.fillStyle = light ? "#128a4a" : "#4ade80";
-      ctx.font = "bold 40px ui-monospace, monospace";
-      ctx.textBaseline = "middle";
-      ctx.fillText(">", 8, 30);
-      if (on) ctx.fillRect(34, 40, 22, 6);
-      link.setAttribute("href", canvas.toDataURL("image/png"));
-      on = !on;
-    }
-
-    paint();
-    setInterval(function () {
-      if (!document.hidden) paint();
-    }, 600);
-  }
-
-  initFavicon();
-
   /* ── analytics ─────────────────────────────────────
      GoatCounter, loaded from script rather than a tag in the HTML so it
      can be skipped off the live host. The PDF and card builds render the
@@ -629,34 +651,11 @@
 
   initAnalytics();
 
-  document.getElementById("pdfBtn").addEventListener("click", function () {
-    countDownload(this.getAttribute("download"));
-  });
-
-  /* ── the title types a line while the tab is in the background ── */
-
-  function initTitle() {
-    var timer = null;
-
-    document.addEventListener("visibilitychange", function () {
-      var tr = t();
-      if (timer) { clearTimeout(timer); timer = null; }
-
-      if (!document.hidden) {
-        document.title = "René Guerrero Pérez — " + tr.hero.role;
-        return;
-      }
-
-      var msg = "rene@cv:~$ " + (root.getAttribute("lang") === "es" ? "vuelve" : "come back");
-      var i = 0;
-      (function step() {
-        document.title = msg.slice(0, ++i) + "_";
-        if (i < msg.length) timer = setTimeout(step, 90);
-      })();
+  document.querySelectorAll("[data-pdf]").forEach(function (a) {
+    a.addEventListener("click", function () {
+      countDownload(this.getAttribute("download"));
     });
-  }
-
-  initTitle();
+  });
 
   initTyping();
 })();

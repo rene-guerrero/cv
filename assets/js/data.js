@@ -5,13 +5,17 @@ window.CV = {
       skip: "Ir al contenido",
       pdf: "PDF",
       pdfTitle: "Descargar CV en PDF",
+      theme: "Cambiar tema",
       builtWith: "Hecho con HTML, CSS y JavaScript. Sin frameworks."
     },
     hero: {
       role: "Ingeniero de Software Full Stack Senior",
+      stack: "Software para seguros · C# / .NET · Angular · Azure · SQL Server",
+      cv: "Descargar CV",
+      emailMe: "Escríbeme",
       exp: "8+ años de experiencia",
       remote: "Remoto",
-      location: "Holguín, Cuba · UTC−5",
+      location: "Holguín, Cuba · hora de Cuba (UTC−5, UTC−4 en verano)",
       available: "Disponible para propuestas",
       english: "Inglés",
       fluent: "Fluido",
@@ -20,8 +24,13 @@ window.CV = {
     },
     about: {
       title: "Perfil",
-      p1: "Ingeniero de software con más de 8 años de experiencia construyendo y entregando aplicaciones web empresariales de extremo a extremo. Especializado en C#, .NET, Angular, SQL Server y Microsoft Azure, con experiencia en el diseño de aplicaciones de negocio, sistemas multi-tenant, automatización de flujos de trabajo, gestión documental, reportería, migración de datos y soluciones en la nube.",
-      p2: "Acostumbrado a trabajar de forma autónoma en funcionalidades complejas, desde los requisitos y la arquitectura hasta la implementación, pruebas, despliegue y retroalimentación del cliente. Sólida base en arquitectura de aplicaciones empresariales, flujos asíncronos, servicios cloud y desarrollo asistido por IA."
+      p1: "Ingeniero Full Stack Senior con más de 8 años de experiencia, los últimos seis construyendo una plataforma para el sector asegurador con C#/.NET, Angular y Azure. El sistema multi-tenant da servicio a 5 tenants y a unos 700 usuarios, y me encargo de las funcionalidades de punta a punta: requisitos, arquitectura, implementación, despliegue y retroalimentación del cliente.",
+      results: [
+        { n: "~700", l: "usuarios en una plataforma multi-tenant para seguros" },
+        { n: "20+", l: "reportes manuales reemplazados por Custom Views" },
+        { n: "~1,9 M", l: "filas al día por un único pipeline de Synapse" }
+      ],
+      p2: "Mi trabajo incluye flujos de CRM y reclutamiento de agentes, generación de documentos con integraciones de Adobe Sign y DocuSign, un motor de consultas dinámicas que reemplazó más de 20 reportes manuales y un pipeline de Azure Synapse que carga ~1,9 M de filas al día. También he orientado a desarrolladores a tiempo parcial del equipo."
     },
     console: {
       title: "Terminal",
@@ -40,15 +49,28 @@ window.CV = {
       usage: "uso: {0}",
       sudoMsg: "rene no figura en el fichero sudoers. Se reportará el incidente.",
       exitMsg: "No se puede salir de un CV. Prueba con pdf.",
+      copied: "copiado al portapapeles",
+      noFile: "cat: {0}: no existe el fichero",
+      highlights: [
+        "~700 usuarios en una plataforma multi-tenant para seguros",
+        "Más de 20 reportes manuales reemplazados por un motor de Custom Views",
+        "~1,9 M de filas al día por un único pipeline de Synapse parametrizado",
+        "Integraciones con Adobe Sign y DocuSign y generación de documentos en Azure"
+      ],
       cmds: {
         help: "esta ayuda",
         whoami: "quién soy, en una línea",
+        status: "disponibilidad, modalidad y horario",
+        highlights: "lo más destacado, en cuatro líneas",
         about: "salta al perfil",
         experience: "salta a la experiencia",
         skills: "lista las habilidades — skills azure para filtrar",
         education: "salta a la educación",
         certs: "salta a las certificaciones",
+        ls: "lista las secciones",
+        cat: "muestra una sección — cat about.md",
         contact: "formas de contacto",
+        email: "copia mi correo al portapapeles",
         open: "abre un perfil — open github",
         pdf: "descarga el CV en PDF",
         theme: "cambia el tema — theme light",
@@ -61,25 +83,19 @@ window.CV = {
       items: [
         {
           company: "Trulydata",
-          role: "Ingeniero de Software Full Stack",
+          role: "Ingeniero de Software Full Stack Senior",
           when: "2020 – Presente",
           where: "Remoto",
           current: true,
           bullets: [
-            "Desarrollo y mantengo una plataforma **multi-tenant** para compañías de seguros que da servicio a alrededor de **700 usuarios**, construida con **C#, .NET, Angular, Entity Framework Core, SQL Server y Microsoft Azure**.",
-            "Diseño e implemento aplicaciones de negocio para **compañías de seguros**: plataformas CRM, flujos de trabajo de agentes, gestión documental y sistemas de reportería.",
-            "Mantengo el aislamiento entre tenants con control de acceso por roles, permisos, suscripciones y autenticación basada en Azure.",
-            "Diseño flujos de negocio mediante **Commands y Events**, aportando trazabilidad, procesamiento asíncrono y registro de actividad en operaciones críticas.",
-            "Construyo soluciones cloud de **gestión y generación de documentos** con servicios de Azure y flujos basados en plantillas.",
-            "Desarrollo integraciones con **plataformas de firma digital como Adobe Sign y DocuSign**.",
-            "Diseño e implemento **pipelines de Azure Synapse** para migración y transformación de datos entre sistemas.",
-            "Construí un servicio dinámico de **Custom Views** que permite a los usuarios definir vistas de datos desde el frontend y generar dinámicamente las consultas de base de datos necesarias, dando soporte a reportería empresarial e interfaces con alto volumen de datos.",
-            "Desarrollo **reportes complejos en SQL Server, Stored Procedures y soluciones de reportería dinámica** para distintos requisitos de negocio.",
-            "Desarrollo una **plataforma web configurable de reclutamiento de agentes**, adaptable a los requisitos de cada agencia, que agiliza flujos de trabajo y soporta firma digital.",
-            "Trabajo directamente con clientes y stakeholders para entender requisitos, diseñar soluciones e iterar según su retroalimentación.",
-            "Despliego y doy soporte a aplicaciones en **entornos de Azure**, incluyendo pipelines CI/CD, entornos de QA y releases a producción con Azure DevOps.",
-            "Tomo decisiones técnicas y de arquitectura en nuevas funcionalidades, manteniendo consistencia con la arquitectura y los patrones de ingeniería existentes.",
-            "Uso herramientas de **desarrollo asistido por IA** para acelerar implementación, investigación y resolución de problemas, revisando y validando el código generado y manteniendo la responsabilidad sobre las decisiones técnicas y de arquitectura."
+            "Construí un motor de **Custom Views** que permite definir vistas de datos desde la interfaz y genera dinámicamente las consultas de base de datos. Ha **reemplazado más de 20 reportes manuales** y da soporte a pantallas con alto volumen de datos.",
+            "Migré el ETL analítico de Spark Mapping Data Flows a un único **pipeline de Azure Synapse parametrizado**, con programación automática y reintento por tenant. Hoy carga **~1,9 M de filas (~0,5 GB) al día**.",
+            "Integré **Adobe Sign y DocuSign** y desarrollé la **generación y gestión de documentos** en la nube con servicios de Azure y plantillas.",
+            "Soy responsable del desarrollo de una **plataforma multi-tenant para el sector asegurador** con **5 tenants y unos 700 usuarios**, construida con **C#, .NET, Angular, Entity Framework Core, SQL Server y Azure**, en un equipo de tres personas.",
+            "Entrego aplicaciones de CRM, flujos de agentes y reportería para aseguradoras, incluida una **plataforma configurable de reclutamiento de agentes** que se adapta a los requisitos de cada agencia y admite firma digital.",
+            "Diseño los flujos de negocio con **Commands y Events**, lo que da trazabilidad, procesamiento asíncrono y registro de actividad en operaciones críticas, y mantengo el aislamiento entre tenants con control de acceso por roles, permisos, suscripciones y autenticación en Azure.",
+            "Escribo **reportes complejos en SQL Server y Stored Procedures** para necesidades de negocio específicas.",
+            "Despliego a QA y producción con **pipelines CI/CD de Azure DevOps**, trabajo directamente con los clientes para levantar requisitos e iterar según su retroalimentación, y he orientado a desarrolladores a tiempo parcial."
           ]
         },
         {
@@ -89,30 +105,29 @@ window.CV = {
           where: "",
           current: false,
           bullets: [
-            "Desarrollé aplicaciones web y soluciones de software con **React, Angular, Vue, Django, Python, Java y PostgreSQL**.",
-            "Construí plataformas web y aplicaciones Android para estudios de fotografía.",
-            "Desarrollé una **Infraestructura de Clave Pública (PKI)** basada en EJBCA como proyecto de tesis universitaria.",
-            "Construí un bot de Telegram integrado con la **API de Moodle** para la gestión automatizada de ficheros."
+            "Construí plataformas web y aplicaciones Android para estudios de fotografía, con **React, Angular, Vue, Django, Python, Java y PostgreSQL** según el proyecto.",
+            "Construí un bot de Telegram sobre la **API de Moodle** para la gestión automatizada de ficheros."
           ]
         }
       ]
     },
     skills: {
       title: "Habilidades técnicas",
+      core: ["C#", ".NET", "ASP.NET Core", "Angular", "TypeScript", "SQL Server", "Entity Framework Core"],
       groups: [
-        { name: "Lenguajes y Frameworks", items: ["C#", ".NET", "ASP.NET Core", "Angular", "TypeScript", "JavaScript", "Python", "Java", "React", "Vue", "HTML", "CSS"] },
-        { name: "Backend y Arquitectura", items: ["REST APIs", "Entity Framework Core", "ABP Framework", "Commands & Events", "Procesamiento asíncrono", "Arquitectura Multi-Tenant", "Autenticación y Autorización", "Arquitectura por capas (Domain/Application)"] },
-        { name: "Bases de Datos y Datos", items: ["SQL Server", "PostgreSQL", "Cosmos DB", "Entity Framework Core", "Stored Procedures", "Reportería dinámica", "Migración de datos", "Azure Synapse"] },
-        { name: "Microsoft Azure", items: ["Azure Functions", "Blob Storage", "Azure Queues", "Azure Synapse", "App Services", "Azure DevOps", "CI/CD"] },
-        { name: "Integraciones Empresariales", items: ["Adobe Sign", "DocuSign"] },
-        { name: "Prácticas de Desarrollo", items: ["Git", "Desarrollo Ágil", "Jira", "Zoho", "Gestión de tickets", "Code Review", "Colaboración con clientes", "Despliegue en la nube", "Desarrollo asistido por IA"] }
+        { name: "Lenguajes y Frameworks", items: ["C#", ".NET", "ASP.NET Core", "Angular", "TypeScript", "JavaScript", "Python", "Java", "React", "Vue"] },
+        { name: "Backend y Arquitectura", items: ["REST APIs", "ABP Framework", "Entity Framework Core", "Commands & Events", "Procesamiento asíncrono", "Arquitectura Multi-Tenant", "Autenticación y Autorización", "Arquitectura por capas (Domain/Application)"] },
+        { name: "Bases de Datos y Datos", items: ["SQL Server", "PostgreSQL", "Cosmos DB", "Stored Procedures", "Reportería dinámica", "Migración de datos"] },
+        { name: "Azure y DevOps", items: ["Azure Synapse", "Azure Functions", "Blob Storage", "Azure Queues", "App Services", "Azure DevOps", "CI/CD"] },
+        { name: "Integraciones y Prácticas", items: ["Adobe Sign", "DocuSign", "Git", "Desarrollo Ágil", "Code Review", "Mentoría", "Jira", "Desarrollo asistido por IA"] }
       ]
     },
     edu: {
       title: "Educación",
       degree: "Ingeniería de Software",
       school: "Universidad de Holguín",
-      place: "Holguín, Cuba"
+      place: "Holguín, Cuba",
+      thesis: "Tesis: Infraestructura de Clave Pública (PKI) basada en EJBCA."
     },
     certs: {
       title: "Certificaciones y habilidades aplicadas",
@@ -128,13 +143,17 @@ window.CV = {
       skip: "Skip to content",
       pdf: "PDF",
       pdfTitle: "Download CV as PDF",
+      theme: "Toggle theme",
       builtWith: "Built with HTML, CSS and JavaScript. No frameworks."
     },
     hero: {
       role: "Senior Full Stack Software Engineer",
+      stack: "Insurance software · C# / .NET · Angular · Azure · SQL Server",
+      cv: "Download CV",
+      emailMe: "Email me",
       exp: "8+ years of experience",
       remote: "Remote",
-      location: "Holguín, Cuba · UTC−5",
+      location: "Holguín, Cuba · Cuba time (UTC−5, UTC−4 in summer)",
       available: "Open to opportunities",
       english: "English",
       fluent: "Fluent",
@@ -143,8 +162,13 @@ window.CV = {
     },
     about: {
       title: "Profile",
-      p1: "Software Engineer with 8+ years of experience building and delivering enterprise web applications across the full stack. Specialized in C#, .NET, Angular, SQL Server and Microsoft Azure, with experience designing business applications, multi-tenant systems, workflow automation, document management, reporting, data migration and cloud-based solutions.",
-      p2: "Experienced in working independently on complex features from requirements and architecture through implementation, testing, deployment and client feedback. Strong background in enterprise application architecture, asynchronous workflows, cloud services and AI-assisted software development."
+      p1: "Senior Full Stack Engineer with 8+ years of experience, the last six building an insurance-industry platform on C#/.NET, Angular and Azure. The multi-tenant system serves 5 tenants and about 700 users, and I own features end to end: requirements, architecture, implementation, deployment and client feedback.",
+      results: [
+        { n: "~700", l: "users on a multi-tenant insurance platform" },
+        { n: "20+", l: "manual reports replaced by Custom Views" },
+        { n: "~1.9M", l: "rows a day through one Synapse pipeline" }
+      ],
+      p2: "My work includes CRM and agent-recruitment workflows, document generation with Adobe Sign and DocuSign integrations, a dynamic query engine that replaced more than 20 manual reports, and a parameterized Azure Synapse pipeline that loads ~1.9M rows a day. I have also mentored part-time developers on the team."
     },
     console: {
       title: "Terminal",
@@ -163,15 +187,28 @@ window.CV = {
       usage: "usage: {0}",
       sudoMsg: "rene is not in the sudoers file. This incident will be reported.",
       exitMsg: "You cannot exit a CV. Try pdf instead.",
+      copied: "copied to clipboard",
+      noFile: "cat: {0}: no such file",
+      highlights: [
+        "~700 users on a multi-tenant insurance platform",
+        "20+ manual reports replaced by one Custom Views engine",
+        "~1.9M rows a day through a single parameterized Synapse pipeline",
+        "Adobe Sign and DocuSign integrations, and document generation on Azure"
+      ],
       cmds: {
         help: "this help",
         whoami: "who I am, in one line",
+        status: "availability, work mode and time zone",
+        highlights: "the headline results, in four lines",
         about: "jump to the profile",
         experience: "jump to the experience",
         skills: "list skills — skills azure to filter",
         education: "jump to the education",
         certs: "jump to the certifications",
+        ls: "list the sections",
+        cat: "print a section — cat about.md",
         contact: "ways to reach me",
+        email: "copy my email address to the clipboard",
         open: "open a profile — open github",
         pdf: "download the CV as PDF",
         theme: "switch theme — theme light",
@@ -184,25 +221,19 @@ window.CV = {
       items: [
         {
           company: "Trulydata",
-          role: "Full Stack Software Engineer",
+          role: "Senior Full Stack Software Engineer",
           when: "2020 – Present",
           where: "Remote",
           current: true,
           bullets: [
-            "Develop and maintain a **multi-tenant** platform for insurance companies serving around **700 users**, built with **C#, .NET, Angular, Entity Framework Core, SQL Server and Microsoft Azure**.",
-            "Design and implement business applications for **insurance companies**, including CRM platforms, agent workflows, document management and reporting systems.",
-            "Keep tenants isolated through role-based access control, permissions, subscriptions and Azure-based authentication.",
-            "Design business workflows using **Commands and Events**, supporting traceability, asynchronous processing and activity logging across critical operations.",
-            "Build cloud-based **document management and document generation** solutions using Azure services and template-based document workflows.",
-            "Develop integrations with **digital signature platforms including Adobe Sign and DocuSign**.",
-            "Design and implement **Azure Synapse pipelines** for data migration and transformation between systems.",
-            "Built a dynamic **Custom Views** service that allows users to define data views from the frontend and dynamically generate the required database queries, supporting enterprise reporting and data-heavy interfaces.",
-            "Develop complex **SQL Server reports, Stored Procedures and dynamic reporting solutions** for different business requirements.",
-            "Develop a configurable web-based **agent recruitment platform** that adapts to different agency requirements, streamlines workflows and supports digital signatures.",
-            "Work directly with clients and stakeholders to understand requirements, design solutions and iterate based on feedback.",
-            "Deploy and support applications across **Azure environments**, including CI/CD pipelines, QA environments and production releases through Azure DevOps.",
-            "Make architectural and technical decisions across new features while maintaining consistency with existing application architecture and engineering patterns.",
-            "Use **AI-assisted development tools** to accelerate implementation, research and problem solving while reviewing and validating generated code and retaining responsibility for technical and architectural decisions."
+            "Built a **Custom Views** engine that lets users define data views in the UI and generates the underlying database queries dynamically. It has **replaced more than 20 manual reports** and powers data-heavy screens.",
+            "Migrated the analytics ETL from Spark Mapping Data Flows to a single **parameterized Azure Synapse pipeline** with automated scheduling and per-tenant retry. It now loads **~1.9M rows (~0.5 GB) a day**.",
+            "Integrated **Adobe Sign and DocuSign** and built cloud-based **document generation and management** on Azure services and templates.",
+            "Own development of a **multi-tenant insurance platform** serving **5 tenants and about 700 users**, built with **C#, .NET, Angular, Entity Framework Core, SQL Server and Azure**, in a team of three.",
+            "Deliver CRM, agent-workflow and reporting applications for insurance companies, including a **configurable agent-recruitment platform** that adapts to each agency's requirements and supports digital signatures.",
+            "Design business workflows around **Commands and Events**, giving critical operations traceability, asynchronous processing and activity logging, and keep tenants isolated with role-based access, permissions, subscriptions and Azure-based authentication.",
+            "Write complex **SQL Server reports and stored procedures** for business-specific reporting needs.",
+            "Ship to QA and production through **Azure DevOps CI/CD pipelines**, work directly with clients to gather requirements and iterate on their feedback, and have mentored part-time developers."
           ]
         },
         {
@@ -212,30 +243,29 @@ window.CV = {
           where: "",
           current: false,
           bullets: [
-            "Developed web applications and software solutions using **React, Angular, Vue, Django, Python, Java and PostgreSQL**.",
-            "Built web platforms and Android applications for photography studios.",
-            "Developed a **Public Key Infrastructure (PKI)** based on EJBCA as a university degree project.",
-            "Built a Telegram bot integrating with the **Moodle API** for automated file management."
+            "Built web platforms and Android apps for photography studios, using **React, Angular, Vue, Django, Python, Java and PostgreSQL** depending on the project.",
+            "Built a Telegram bot on the **Moodle API** for automated file management."
           ]
         }
       ]
     },
     skills: {
       title: "Technical Skills",
+      core: ["C#", ".NET", "ASP.NET Core", "Angular", "TypeScript", "SQL Server", "Entity Framework Core"],
       groups: [
-        { name: "Languages & Frameworks", items: ["C#", ".NET", "ASP.NET Core", "Angular", "TypeScript", "JavaScript", "Python", "Java", "React", "Vue", "HTML", "CSS"] },
-        { name: "Backend & Architecture", items: ["REST APIs", "Entity Framework Core", "ABP Framework", "Commands & Events", "Asynchronous Processing", "Multi-Tenant Architecture", "Authentication & Authorization", "Domain/Application Layer Architecture"] },
-        { name: "Databases & Data", items: ["SQL Server", "PostgreSQL", "Cosmos DB", "Entity Framework Core", "Stored Procedures", "Dynamic Reporting", "Data Migration", "Azure Synapse"] },
-        { name: "Microsoft Azure", items: ["Azure Functions", "Blob Storage", "Azure Queues", "Azure Synapse", "App Services", "Azure DevOps", "CI/CD"] },
-        { name: "Enterprise Integrations", items: ["Adobe Sign", "DocuSign"] },
-        { name: "Development Practices", items: ["Git", "Agile Development", "Jira", "Zoho", "Ticket Management", "Code Review", "Client Collaboration", "Cloud Deployment", "AI-Assisted Development"] }
+        { name: "Languages & Frameworks", items: ["C#", ".NET", "ASP.NET Core", "Angular", "TypeScript", "JavaScript", "Python", "Java", "React", "Vue"] },
+        { name: "Backend & Architecture", items: ["REST APIs", "ABP Framework", "Entity Framework Core", "Commands & Events", "Asynchronous Processing", "Multi-Tenant Architecture", "Authentication & Authorization", "Domain/Application Layer Architecture"] },
+        { name: "Databases & Data", items: ["SQL Server", "PostgreSQL", "Cosmos DB", "Stored Procedures", "Dynamic Reporting", "Data Migration"] },
+        { name: "Azure & DevOps", items: ["Azure Synapse", "Azure Functions", "Blob Storage", "Azure Queues", "App Services", "Azure DevOps", "CI/CD"] },
+        { name: "Integrations & Practices", items: ["Adobe Sign", "DocuSign", "Git", "Agile Development", "Code Review", "Mentoring", "Jira", "AI-Assisted Development"] }
       ]
     },
     edu: {
       title: "Education",
       degree: "Software Engineering",
       school: "University of Holguín",
-      place: "Holguín, Cuba"
+      place: "Holguín, Cuba",
+      thesis: "Thesis: Public Key Infrastructure (PKI) built on EJBCA."
     },
     certs: {
       title: "Certifications and Applied Skills",

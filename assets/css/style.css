@@ -38,7 +38,7 @@
   --border: #d3dae3;
   --fg: #1d2733;
   --fg-dim: #5d6b7d;
-  --accent: #128a4a;
+  --accent: #0f7a41;
   --accent-2: #0369a1;
   --accent-3: #a16207;
   --magenta: #7c3aed;
@@ -180,14 +180,15 @@ a:hover { border-bottom-color: currentColor; }
 }
 .seg__btn {
   font: inherit;
-  font-size: .72rem;
+  font-size: .75rem;
   letter-spacing: .04em;
-  padding: .25rem .5rem;
+  padding: .45rem .65rem;
   background: transparent;
   color: var(--fg-dim);
   border: 0;
   cursor: pointer;
 }
+.seg__btn { display: inline-block; line-height: 1.2; text-decoration: none; }
 .seg__btn:hover { color: var(--fg); }
 .seg__btn.is-active {
   background: var(--accent);
@@ -199,7 +200,7 @@ a:hover { border-bottom-color: currentColor; }
   font: inherit;
   font-size: .8rem;
   line-height: 1;
-  padding: .32rem .5rem;
+  padding: .5rem .65rem;
   background: transparent;
   color: var(--fg-dim);
   border: 1px solid var(--border);
@@ -207,7 +208,7 @@ a:hover { border-bottom-color: currentColor; }
   cursor: pointer;
 }
 .iconbtn:hover { color: var(--fg); border-color: var(--fg-dim); }
-.iconbtn--text { font-size: .72rem; letter-spacing: .04em; }
+.iconbtn--text { font-size: .75rem; letter-spacing: .04em; }
 
 /* ── screen ────────────────────────────────────────── */
 
@@ -302,20 +303,39 @@ a:hover { border-bottom-color: currentColor; }
 }
 .contact .key {
   display: inline-block;
-  min-width: 10ch;
+  min-width: 11ch;
   color: var(--magenta);
 }
 .contact .key::after { content: ":"; color: var(--fg-dim); }
 
 .badges { margin: 0; display: flex; flex-wrap: wrap; gap: .4rem; }
 .badge {
-  font-size: .72rem;
-  padding: .18rem .5rem;
+  font-size: .8rem;
+  padding: .2rem .6rem;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--bg-soft);
-  color: var(--fg-dim);
+  color: var(--fg);
 }
+
+.cta { margin: 0 0 1rem; display: flex; flex-wrap: wrap; gap: .6rem; }
+.btn {
+  display: inline-block;
+  font-size: .85rem;
+  padding: .5rem .95rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--fg);
+  background: var(--bg-soft);
+}
+.btn:hover { border-color: var(--accent); }
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg-screen);
+  font-weight: 700;
+}
+:root[data-theme="light"] .btn--primary { color: #fff; }
 
 /* ── cards ─────────────────────────────────────────── */
 
@@ -363,7 +383,8 @@ a:hover { border-bottom-color: currentColor; }
 .bullets li {
   position: relative;
   padding-left: 1.6ch;
-  font-size: .88rem;
+  font-size: .92rem;
+  max-width: 90ch;
 }
 .bullets li::before {
   content: "▸";
@@ -372,6 +393,21 @@ a:hover { border-bottom-color: currentColor; }
   color: var(--accent);
 }
 .bullets strong { color: var(--fg); font-weight: 700; }
+
+/* ── results strip ─────────────────────────────────── */
+
+.results {
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: .8rem 0 0;
+  border-top: 1px dashed var(--border);
+  display: grid;
+  gap: .9rem 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+.result { display: flex; flex-direction: column; gap: .1rem; }
+.result__n { font-size: 1.4rem; font-weight: 700; line-height: 1.2; color: var(--accent); }
+.result__l { font-size: .8rem; line-height: 1.4; color: var(--fg-dim); }
 
 /* ── skills ────────────────────────────────────────── */
 
@@ -397,7 +433,7 @@ a:hover { border-bottom-color: currentColor; }
 
 .tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem; }
 .tag {
-  font-size: .74rem;
+  font-size: .78rem;
   padding: .12rem .5rem;
   border: 1px solid var(--border);
   border-radius: 4px;
@@ -405,23 +441,23 @@ a:hover { border-bottom-color: currentColor; }
   color: var(--fg);
 }
 
+.tag--core {
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
 /* ── small screens ─────────────────────────────────── */
 
 @media (max-width: 520px) {
   .titlebar__title { display: none; }
   .avatar { width: 92px; height: 92px; }
-  .contact .key { min-width: 8ch; }
 }
 
-/* The owner of this CV asked for the terminal effects explicitly, so the
-   decorative ones stay on: they are text-only, sub-pixel slow, and none of
-   them flashes or moves the layout. What does get turned off here is
-   anything that moves the viewport or the reader's eye against their will.
-   To honour the preference completely instead, add back:
-       * { animation: none !important; } */
+/* Honour the preference completely: no typing, drifting grid, pulse or
+   caret blink. The typing effect is also skipped in main.js. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .caret { animation: none; }
+  *, *::before, *::after { animation: none !important; }
 }
 
 /* ── print / PDF ───────────────────────────────────── */
@@ -706,6 +742,10 @@ a:hover { border-bottom-color: currentColor; }
 
 @media print {
   .certs { flex-wrap: wrap; overflow: visible; }
-  .certs > li { flex-basis: 30%; }
+  .certs > li { flex-basis: 48%; }
+  .cert__head { height: auto; overflow: visible; }
+  .cert__name { display: block; -webkit-line-clamp: unset; line-clamp: unset; overflow: visible; }
   .cert__link, .cert--more { display: none; }
+  .cta { display: none; }
+  .certs > li:nth-child(n+5) { display: none; }
 }

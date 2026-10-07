@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="en" data-theme="dark" data-base="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>René Guerrero Pérez — Senior Full Stack Software Engineer</title>
-<meta name="description" content="CV of René Guerrero Pérez — Senior Full Stack Software Engineer. C# / .NET · Angular · Azure · SQL Server.">
+<meta name="description" content="Senior Full Stack Software Engineer building insurance platforms with C# / .NET, Angular, Azure and SQL Server. 8+ years of experience. Remote.">
 <meta name="author" content="René Guerrero Pérez">
 <meta name="color-scheme" content="dark light">
 <!-- Social cards and structured data need absolute URLs: crawlers do not
@@ -12,11 +12,16 @@
      the only place to change it — update every https://rene-guerrero.github.io/cv
      below, including the ones inside the JSON-LD block. -->
 <link rel="canonical" href="https://rene-guerrero.github.io/cv/">
+<link rel="alternate" hreflang="en" href="https://rene-guerrero.github.io/cv/">
+<link rel="alternate" hreflang="es" href="https://rene-guerrero.github.io/cv/es/">
+<link rel="alternate" hreflang="x-default" href="https://rene-guerrero.github.io/cv/">
 
 <meta property="og:site_name" content="René Guerrero Pérez">
 <meta property="og:title" content="René Guerrero Pérez — Senior Full Stack Software Engineer">
-<meta property="og:description" content="C# / .NET · Angular · Azure · SQL Server. 8+ years building enterprise web applications.">
+<meta property="og:description" content="Insurance software · C# / .NET · Angular · Azure · SQL Server. 8+ years of experience.">
 <meta property="og:type" content="profile">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
 <meta property="og:url" content="https://rene-guerrero.github.io/cv/">
 <meta property="og:image" content="https://rene-guerrero.github.io/cv/assets/img/og.png">
 <meta property="og:image:width" content="1200">
@@ -25,7 +30,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="René Guerrero Pérez — Senior Full Stack Software Engineer">
-<meta name="twitter:description" content="C# / .NET · Angular · Azure · SQL Server. 8+ years building enterprise web applications.">
+<meta name="twitter:description" content="Insurance software · C# / .NET · Angular · Azure · SQL Server. 8+ years of experience.">
 <meta name="twitter:image" content="https://rene-guerrero.github.io/cv/assets/img/og.png">
 
 <script type="application/ld+json">
@@ -36,7 +41,7 @@
   "givenName": "René",
   "familyName": "Guerrero Pérez",
   "jobTitle": "Senior Full Stack Software Engineer",
-  "description": "Software engineer with 8+ years of experience building enterprise web applications with C#, .NET, Angular, SQL Server and Microsoft Azure.",
+  "description": "Senior Full Stack Engineer with 8+ years of experience, the last six building a multi-tenant insurance platform with C#, .NET, Angular, SQL Server and Microsoft Azure.",
   "url": "https://rene-guerrero.github.io/cv/",
   "image": "https://rene-guerrero.github.io/cv/assets/img/me-512.jpg",
   "email": "mailto:renegue1256@gmail.com",
@@ -65,19 +70,18 @@
   "knowsAbout": [
     "C#", ".NET", "ASP.NET Core", "Angular", "TypeScript",
     "Microsoft Azure", "SQL Server", "Entity Framework Core",
-    "Multi-tenant architecture", "REST APIs", "Azure Synapse"
+    "Multi-tenant architecture", "REST APIs", "Azure Synapse", "Insurance software"
   ]
 }
 </script>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128187;</text></svg>">
-<link rel="preload" href="assets/fonts/jetbrains-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/jetbrains-mono-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<a class="skip-link" href="#main" data-i18n="ui.skip">Ir al contenido</a>
+<a class="skip-link" href="#main" data-i18n="ui.skip">Skip to content</a>
 
 <div class="gridbg" aria-hidden="true"></div>
 <div class="scanlines" aria-hidden="true"></div>
@@ -89,13 +93,13 @@
     <div class="titlebar__title"><span class="muted">~/</span>rene-guerrero<span class="muted">/cv</span> — zsh</div>
     <div class="titlebar__actions">
       <div class="seg" role="group" aria-label="Language">
-        <button type="button" class="seg__btn" data-lang="es">ES</button>
-        <button type="button" class="seg__btn" data-lang="en">EN</button>
+        <a class="seg__btn" data-lang="es" hreflang="es" lang="es" href="es/" aria-label="Español">ES</a>
+        <a class="seg__btn" data-lang="en" hreflang="en" lang="en" href="./" aria-label="English">EN</a>
       </div>
-      <button type="button" class="iconbtn" id="themeToggle" aria-label="Toggle theme" title="Theme">
+      <button type="button" class="iconbtn" id="themeToggle" aria-label="Toggle theme" data-i18n-aria="ui.theme">
         <span class="theme-icon" aria-hidden="true"></span>
       </button>
-      <a class="iconbtn iconbtn--text" id="pdfBtn" href="assets/pdf/Rene-Guerrero-CV-EN.pdf"
+      <a class="iconbtn iconbtn--text" id="pdfBtn" data-pdf href="assets/pdf/Rene-Guerrero-CV-EN.pdf"
          download data-i18n-title="ui.pdfTitle">
         <span aria-hidden="true">⤓</span> <span data-i18n="ui.pdf">PDF</span>
       </a>
@@ -106,26 +110,30 @@
 
     <!-- ── HERO ─────────────────────────────────────────── -->
     <section class="block hero">
-      <p class="cmd"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">whoami</span></p>
+      <p class="cmd" aria-hidden="true"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">whoami</span></p>
       <div class="hero__body">
         <img class="avatar" src="assets/img/me-512.jpg" alt="René Guerrero Pérez" width="512" height="512">
         <div class="hero__text">
           <h1 class="name">René Guerrero Pérez</h1>
           <p class="role" data-i18n="hero.role">Senior Full Stack Software Engineer</p>
-          <p class="stack">C# / .NET <span class="dot">·</span> Angular <span class="dot">·</span> Azure <span class="dot">·</span> SQL Server</p>
+          <p class="stack" data-i18n="hero.stack">Insurance software · C# / .NET · Angular · Azure · SQL Server</p>
+          <p class="cta">
+            <a class="btn btn--primary" data-pdf href="assets/pdf/Rene-Guerrero-CV-EN.pdf" download><span aria-hidden="true">⤓</span> <span data-i18n="hero.cv">Download CV</span></a>
+            <a class="btn" href="mailto:renegue1256@gmail.com"><span data-i18n="hero.emailMe">Email me</span></a>
+          </p>
           <ul class="contact">
             <li><span class="key">mail</span><a href="mailto:renegue1256@gmail.com">renegue1256@gmail.com</a></li>
             <li><span class="key">linkedin</span><a href="https://www.linkedin.com/in/rguerrero00/" target="_blank" rel="noopener">/in/rguerrero00</a></li>
             <li><span class="key">github</span><a href="https://github.com/rene-guerrero" target="_blank" rel="noopener">@rene-guerrero</a></li>
             <li><span class="key">telegram</span><a href="https://t.me/reneguerrero" target="_blank" rel="noopener">@reneguerrero</a></li>
-            <li><span class="key">location</span><span data-i18n="hero.location">Holguín, Cuba · UTC−5</span></li>
+            <li><span class="key">location</span><span data-i18n="hero.location">Holguín, Cuba · Cuba time (UTC−5, UTC−4 in summer)</span></li>
           </ul>
           <p class="badges">
-            <span class="badge badge--status"><span class="pulse" aria-hidden="true"></span><span data-i18n="hero.available">Disponible para propuestas</span></span>
-            <span class="badge" data-i18n="hero.exp">8+ años de experiencia</span>
-            <span class="badge" data-i18n="hero.remote">Remoto</span>
-            <span class="badge"><span data-i18n="hero.english">Inglés</span>: <span data-i18n="hero.fluent">Fluido</span></span>
-            <span class="badge"><span data-i18n="hero.spanish">Español</span>: <span data-i18n="hero.native">Nativo</span></span>
+            <span class="badge badge--status"><span class="pulse" aria-hidden="true"></span><span data-i18n="hero.available">Open to opportunities</span></span>
+            <span class="badge" data-i18n="hero.exp">8+ years of experience</span>
+            <span class="badge" data-i18n="hero.remote">Remote</span>
+            <span class="badge"><span data-i18n="hero.english">English</span>: <span data-i18n="hero.fluent">Fluent</span></span>
+            <span class="badge"><span data-i18n="hero.spanish">Spanish</span>: <span data-i18n="hero.native">Native</span></span>
           </p>
         </div>
       </div>
@@ -133,48 +141,50 @@
 
     <!-- ── ABOUT ────────────────────────────────────────── -->
     <section class="block" id="about">
-      <p class="cmd"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">cat about.md</span></p>
-      <h2 class="h2" data-i18n="about.title">Perfil</h2>
-      <p class="p" data-i18n="about.p1"></p>
-      <p class="p" data-i18n="about.p2"></p>
+      <p class="cmd" aria-hidden="true"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">cat about.md</span></p>
+      <h2 class="h2" data-i18n="about.title">Profile</h2>
+      <p class="p" data-i18n="about.p1">Senior Full Stack Engineer with 8+ years of experience, the last six building an insurance-industry platform on C#/.NET, Angular and Azure. The multi-tenant system serves 5 tenants and about 700 users, and I own features end to end: requirements, architecture, implementation, deployment and client feedback.</p>
+      <p class="p" data-i18n="about.p2">My work includes CRM and agent-recruitment workflows, document generation with Adobe Sign and DocuSign integrations, a dynamic query engine that replaced more than 20 manual reports, and a parameterized Azure Synapse pipeline that loads ~1.9M rows a day. I have also mentored part-time developers on the team.</p>
+      <ul class="results" id="results"><!--pre:results--><li class="result"><span class="result__n">~700</span><span class="result__l">users on a multi-tenant insurance platform</span></li><li class="result"><span class="result__n">20+</span><span class="result__l">manual reports replaced by Custom Views</span></li><li class="result"><span class="result__n">~1.9M</span><span class="result__l">rows a day through one Synapse pipeline</span></li><!--/pre:results--></ul>
     </section>
 
     <!-- ── EXPERIENCE ───────────────────────────────────── -->
     <section class="block" id="experience-section">
-      <p class="cmd"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">git log --oneline experience/</span></p>
-      <h2 class="h2" data-i18n="exp.title">Experiencia profesional</h2>
-      <div id="experience" class="timeline"></div>
+      <p class="cmd" aria-hidden="true"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">git log --oneline experience/</span></p>
+      <h2 class="h2" data-i18n="exp.title">Professional Experience</h2>
+      <div id="experience" class="timeline"><!--pre:experience--><article class="card job"><header class="job__head"><h3 class="card__title"><span class="job__company">Trulydata</span><span class="dot">·</span><span class="job__role">Senior Full Stack Software Engineer</span></h3><p class="card__meta"><span class="when">2020 – Present</span><span class="dot">·</span><span>Remote</span><span class="chip chip--live">● live</span></p></header><ul class="bullets"><li>Built a <strong>Custom Views</strong> engine that lets users define data views in the UI and generates the underlying database queries dynamically. It has <strong>replaced more than 20 manual reports</strong> and powers data-heavy screens.</li><li>Migrated the analytics ETL from Spark Mapping Data Flows to a single <strong>parameterized Azure Synapse pipeline</strong> with automated scheduling and per-tenant retry. It now loads <strong>~1.9M rows (~0.5 GB) a day</strong>.</li><li>Integrated <strong>Adobe Sign and DocuSign</strong> and built cloud-based <strong>document generation and management</strong> on Azure services and templates.</li><li>Own development of a <strong>multi-tenant insurance platform</strong> serving <strong>5 tenants and about 700 users</strong>, built with <strong>C#, .NET, Angular, Entity Framework Core, SQL Server and Azure</strong>, in a team of three.</li><li>Deliver CRM, agent-workflow and reporting applications for insurance companies, including a <strong>configurable agent-recruitment platform</strong> that adapts to each agency&#39;s requirements and supports digital signatures.</li><li>Design business workflows around <strong>Commands and Events</strong>, giving critical operations traceability, asynchronous processing and activity logging, and keep tenants isolated with role-based access, permissions, subscriptions and Azure-based authentication.</li><li>Write complex <strong>SQL Server reports and stored procedures</strong> for business-specific reporting needs.</li><li>Ship to QA and production through <strong>Azure DevOps CI/CD pipelines</strong>, work directly with clients to gather requirements and iterate on their feedback, and have mentored part-time developers.</li></ul></article><article class="card job"><header class="job__head"><h3 class="card__title"><span class="job__company">Freelance</span><span class="dot">·</span><span class="job__role">Software Developer</span></h3><p class="card__meta"><span class="when">2018 – 2020</span></p></header><ul class="bullets"><li>Built web platforms and Android apps for photography studios, using <strong>React, Angular, Vue, Django, Python, Java and PostgreSQL</strong> depending on the project.</li><li>Built a Telegram bot on the <strong>Moodle API</strong> for automated file management.</li></ul></article><!--/pre:experience--></div>
     </section>
 
     <!-- ── SKILLS ───────────────────────────────────────── -->
     <section class="block" id="skills-section">
-      <p class="cmd"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">ls -la skills/</span></p>
-      <h2 class="h2" data-i18n="skills.title">Habilidades técnicas</h2>
-      <div id="skills" class="skills"></div>
+      <p class="cmd" aria-hidden="true"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">ls -la skills/</span></p>
+      <h2 class="h2" data-i18n="skills.title">Technical Skills</h2>
+      <div id="skills" class="skills"><!--pre:skills--><div class="skillgroup"><h3 class="skillgroup__name">Languages &amp; Frameworks</h3><ul class="tags"><li class="tag tag--core">C#</li><li class="tag tag--core">.NET</li><li class="tag tag--core">ASP.NET Core</li><li class="tag tag--core">Angular</li><li class="tag tag--core">TypeScript</li><li class="tag">JavaScript</li><li class="tag">Python</li><li class="tag">Java</li><li class="tag">React</li><li class="tag">Vue</li></ul></div><div class="skillgroup"><h3 class="skillgroup__name">Backend &amp; Architecture</h3><ul class="tags"><li class="tag">REST APIs</li><li class="tag">ABP Framework</li><li class="tag tag--core">Entity Framework Core</li><li class="tag">Commands &amp; Events</li><li class="tag">Asynchronous Processing</li><li class="tag">Multi-Tenant Architecture</li><li class="tag">Authentication &amp; Authorization</li><li class="tag">Domain/Application Layer Architecture</li></ul></div><div class="skillgroup"><h3 class="skillgroup__name">Databases &amp; Data</h3><ul class="tags"><li class="tag tag--core">SQL Server</li><li class="tag">PostgreSQL</li><li class="tag">Cosmos DB</li><li class="tag">Stored Procedures</li><li class="tag">Dynamic Reporting</li><li class="tag">Data Migration</li></ul></div><div class="skillgroup"><h3 class="skillgroup__name">Azure &amp; DevOps</h3><ul class="tags"><li class="tag">Azure Synapse</li><li class="tag">Azure Functions</li><li class="tag">Blob Storage</li><li class="tag">Azure Queues</li><li class="tag">App Services</li><li class="tag">Azure DevOps</li><li class="tag">CI/CD</li></ul></div><div class="skillgroup"><h3 class="skillgroup__name">Integrations &amp; Practices</h3><ul class="tags"><li class="tag">Adobe Sign</li><li class="tag">DocuSign</li><li class="tag">Git</li><li class="tag">Agile Development</li><li class="tag">Code Review</li><li class="tag">Mentoring</li><li class="tag">Jira</li><li class="tag">AI-Assisted Development</li></ul></div><!--/pre:skills--></div>
     </section>
 
     <!-- ── EDUCATION ────────────────────────────────────── -->
     <section class="block" id="education-section">
-      <p class="cmd"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">cat education.txt</span></p>
-      <h2 class="h2" data-i18n="edu.title">Educación</h2>
+      <p class="cmd" aria-hidden="true"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">cat education.txt</span></p>
+      <h2 class="h2" data-i18n="edu.title">Education</h2>
       <div class="card">
-        <h3 class="card__title" data-i18n="edu.degree">Ingeniería de Software</h3>
-        <p class="card__meta"><span data-i18n="edu.school">Universidad de Holguín</span> <span class="dot">·</span> <span data-i18n="edu.place">Holguín, Cuba</span> <span class="dot">·</span> <span class="when">2018 – 2022</span></p>
+        <h3 class="card__title" data-i18n="edu.degree">Software Engineering</h3>
+        <p class="card__meta"><span data-i18n="edu.school">University of Holguín</span> <span class="dot">·</span> <span data-i18n="edu.place">Holguín, Cuba</span> <span class="dot">·</span> <span class="when">2018 – 2022</span></p>
+        <p class="card__meta" data-i18n="edu.thesis">Thesis: Public Key Infrastructure (PKI) built on EJBCA.</p>
       </div>
     </section>
 
     <!-- ── CERTIFICATIONS ───────────────────────────────── -->
     <section class="block" id="certs-section" hidden>
-      <p class="cmd"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">ls certifications/ --recent</span></p>
-      <h2 class="h2" data-i18n="certs.title">Certificaciones y habilidades aplicadas</h2>
+      <p class="cmd" aria-hidden="true"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">ls certifications/ --recent</span></p>
+      <h2 class="h2" data-i18n="certs.title">Certifications and Applied Skills</h2>
       <ul class="certs" id="certs"></ul>
     </section>
 
     <!-- ── INTERACTIVE CONSOLE ──────────────────────────── -->
     <section class="block" id="console-section">
-      <p class="cmd"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">./cv --interactive</span></p>
+      <p class="cmd" aria-hidden="true"><span class="prompt">rene@cv</span><span class="sep">:</span><span class="path">~</span><span class="sigil">$</span> <span class="typed">./cv --interactive</span></p>
       <h2 class="h2" data-i18n="console.title">Terminal</h2>
-      <p class="p muted console__hint" data-i18n="console.hint">Escribe help y pulsa Enter.</p>
+      <p class="p muted console__hint" data-i18n="console.hint">This is a real console. Type help and hit Enter.</p>
 
       <div class="console" id="console">
         <div class="console__out" id="consoleOut" role="log" aria-live="polite"></div>
@@ -191,7 +201,7 @@
 
     <!-- ── FOOTER ───────────────────────────────────────── -->
     <section class="block">
-      <p class="p muted small"><span data-i18n="ui.builtWith">Hecho con HTML, CSS y JavaScript. Sin frameworks.</span></p>
+      <p class="p muted small"><span data-i18n="ui.builtWith">Built with HTML, CSS and JavaScript. No frameworks.</span></p>
     </section>
 
   </main>

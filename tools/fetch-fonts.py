@@ -3,8 +3,7 @@ Self-hosts JetBrains Mono instead of loading it from Google Fonts.
 
     python tools/fetch-fonts.py
 
-Downloads the latin and latin-ext woff2 subsets for the weights the CV
-actually uses, into assets/fonts/, and writes assets/css/fonts.css with
+Downloads the variable (400-700) latin and latin-ext woff2 subsets, into assets/fonts/, and writes assets/css/fonts.css with
 local @font-face rules.
 
 Why not just link Google Fonts: the stylesheet is a render-blocking
@@ -20,7 +19,7 @@ import re
 import sys
 import urllib.request
 
-FAMILY = "JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400"
+FAMILY = "JetBrains+Mono:wght@400..700"
 SUBSETS = ("latin", "latin-ext")
 UA = {
     "User-Agent": (
@@ -61,15 +60,10 @@ def main():
         if subset not in SUBSETS:
             continue
 
-        weight = re.search(r"font-weight:\s*(\d+)", block).group(1)
-        style = re.search(r"font-style:\s*(\w+)", block).group(1)
         url = re.search(r"url\((https://[^)]+)\)", block).group(1)
 
-        name = "jetbrains-mono-%s%s-%s.woff2" % (
-            weight,
-            "-italic" if style == "italic" else "",
-            subset,
-        )
+        # one variable file per subset covers every weight
+        name = "jetbrains-mono-%s.woff2" % subset
         path = os.path.join(font_dir, name)
         if not os.path.exists(path):
             with open(path, "wb") as f:
