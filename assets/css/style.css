@@ -521,8 +521,6 @@ a:hover { border-bottom-color: currentColor; }
   }
   .h2::before { content: none; }
 
-  .avatar { width: 96px; height: 96px; }
-
   .name { font-size: 17pt; }
 
   a { color: var(--fg); border: 0; }
@@ -545,10 +543,37 @@ a:hover { border-bottom-color: currentColor; }
   .badge { border-color: var(--border); }
   .chip--live { display: none; }
 
-  /* keep blocks from splitting badly across pages */
-  .block, .card, .skillgroup, .hero__body { break-inside: avoid; }
-  .job { break-inside: auto; }
+  /* Sections may run across a page break — keeping a whole section
+     together is what used to push Experience onto page 2 and leave half
+     of page 1 blank. The pieces inside a section still stay whole. */
+  .hero__body, .skillgroup, .results, .cert, .bullets li, .job__head { break-inside: avoid; }
+  .block, .job { break-inside: auto; }
   h1, h2, h3 { break-after: avoid; }
+
+  /* tighter header: the photo and badges were costing a third of page 1 */
+  .avatar { width: 80px; height: 80px; }
+  .badges { margin-top: .4rem; }
+
+  .results { margin-top: .6rem; padding-top: .5rem; }
+  .result__n { font-size: 13pt; }
+
+  .timeline { gap: .6rem; }
+  .bullets { margin-top: .5rem; gap: .25rem; }
+
+  /* skills: one line per group instead of boxes of pills */
+  .skills { display: grid; grid-template-columns: 1fr; gap: .2rem; }
+  .skillgroup {
+    display: grid;
+    grid-template-columns: 26ch 1fr;
+    gap: 1ch;
+    border: 0;
+    padding: 0;
+  }
+  .skillgroup__name { margin: 0; font-size: 8pt; line-height: 1.6; }
+  .tags { display: block; font-size: 9pt; }
+  .tag { display: inline; border: 0; padding: 0; font-size: 9pt; }
+  .tag:not(:last-child)::after { content: " · "; font-weight: 400; color: var(--fg-dim); }
+  .tag--core { font-weight: 700; }
 
   /* last block is just the shell prompt / credits */
   .block:last-child { display: none; }
@@ -741,10 +766,23 @@ a:hover { border-bottom-color: currentColor; }
 .cert--more { align-items: center; justify-content: center; text-align: center; border-left-style: dashed; }
 
 @media print {
-  .certs { flex-wrap: wrap; overflow: visible; }
-  .certs > li { flex-basis: 48%; }
-  .cert__head { height: auto; overflow: visible; }
-  .cert__name { display: block; -webkit-line-clamp: unset; line-clamp: unset; overflow: visible; }
+  /* one line per certification: name · issuer · date, no card or logo */
+  .certs { display: block; overflow: visible; padding: 0; }
+  .certs > li { display: block; }
+  .cert {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: baseline;
+    gap: 0 1.5ch;
+    border: 0;
+    padding: .1rem 0;
+  }
+  .cert__head { display: contents; }
+  .cert__logo { display: none; }
+  .cert__who { display: contents; }
+  .cert__name { display: inline; font-size: 9pt; -webkit-line-clamp: unset; line-clamp: unset; overflow: visible; }
+  .cert__issuer, .cert__dates { height: auto; font-size: 8.5pt; }
+  .cert__id { display: none; }
   .cert__link, .cert--more { display: none; }
   .cta { display: none; }
   .certs > li:nth-child(n+5) { display: none; }
