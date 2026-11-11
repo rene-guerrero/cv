@@ -4,14 +4,14 @@ window.CV = {
     ui: {
       skip: "Ir al contenido",
       pdf: "PDF",
-      pdfTitle: "Descargar CV en PDF",
+      pdfTitle: "Descargar CV en PDF (inglés)",
       theme: "Cambiar tema",
       builtWith: "Hecho con HTML, CSS y JavaScript. Sin frameworks."
     },
     hero: {
       role: "Ingeniero de Software Full Stack Senior",
       stack: "Software para seguros · C# / .NET · Angular · Azure · SQL Server",
-      cv: "Descargar CV",
+      cv: "Descargar CV (inglés)",
       emailMe: "Escríbeme",
       exp: "8+ años de experiencia",
       remote: "Remoto",
@@ -273,6 +273,61 @@ window.CV = {
       expires: "Expires",
       credential: "Show credential",
       more: "See more on LinkedIn"
+    },
+    ats: {
+      title: "Senior Full Stack Software Engineer",
+      location: "Holguín, Cuba (UTC−5) · Remote",
+      phoneLabel: "Phone",
+      sections: {
+        summary: "Professional Summary",
+        skills: "Technical Skills",
+        experience: "Professional Experience",
+        education: "Education",
+        certs: "Certifications",
+        languages: "Spoken Languages"
+      },
+      summary: "Senior Full Stack Software Engineer with 8+ years of experience specializing in multi-tenant SaaS platforms for the insurance industry, built on C#/.NET, Angular, SQL Server and Azure. Built and run in production a platform serving 5 tenants and ~700 users, including a dynamic query engine that replaced 20+ manual reports and an Azure Synapse pipeline processing ~1.9M rows a day. Strong in system design, event-driven workflows, CI/CD with Azure DevOps, and daily delivery with AI coding agents.",
+      skills: [
+        { name: "Programming Languages", items: "C#, TypeScript, JavaScript, SQL, Python, Java" },
+        { name: "Frameworks & Libraries", items: ".NET, ASP.NET Core, Entity Framework Core, ABP Framework, Angular, React, Vue" },
+        { name: "Cloud & DevOps", items: "Azure (Synapse, Functions, App Services, Blob Storage, Queues), Azure DevOps, CI/CD, Git" },
+        { name: "Databases & Tools", items: "SQL Server, Stored Procedures, PostgreSQL, Cosmos DB, REST APIs, Adobe Sign, DocuSign, Jira" },
+        { name: "Methodologies", items: "Multi-Tenant Architecture, Commands & Events, Asynchronous Processing, Layered Architecture, Agile/Scrum, Code Review, AI-Assisted Development" }
+      ],
+      jobs: [
+        {
+          role: "Senior Full Stack Software Engineer",
+          company: "Trulydata",
+          place: "Remote",
+          when: "2020 – Present",
+          bullets: [
+            "Engineered a Custom Views engine that generates database queries dynamically from views users define in the UI, replacing 20+ manual reports and powering data-heavy screens.",
+            "Re-architected the analytics ETL from Spark Mapping Data Flows into a single parameterized Azure Synapse pipeline with automated scheduling and per-tenant retry, now loading ~1.9M rows (~0.5 GB) a day.",
+            "Owned development of a multi-tenant insurance platform (C#, .NET, Angular, EF Core, SQL Server, Azure) serving 5 tenants and ~700 users in a team of three, with tenant isolation through role-based access, permissions and Azure authentication.",
+            "Integrated Adobe Sign and DocuSign into Azure-based document generation, and shipped a configurable agent-recruitment platform with digital signatures that adapts to each agency's requirements.",
+            "Designed business workflows on Commands & Events for traceable, asynchronous critical operations; ship through Azure DevOps CI/CD, mentor part-time developers, and deliver daily with AI coding agents."
+          ]
+        },
+        {
+          role: "Freelance Software Developer",
+          company: "Self-employed",
+          place: "Remote",
+          when: "2018 – 2020",
+          bullets: [
+            "Delivered web platforms and Android apps for photography studios using React, Angular, Vue, Django, Python, Java and PostgreSQL.",
+            "Automated file management with a Telegram bot built on the Moodle API."
+          ]
+        }
+      ],
+      education: {
+        degree: "B.Sc. in Software Engineering",
+        school: "University of Holguín",
+        place: "Holguín, Cuba",
+        when: "2018 – 2022",
+        note: "Thesis: Public Key Infrastructure (PKI) built on EJBCA."
+      },
+      certCount: 4,
+      languages: "English (Fluent), Spanish (Native)"
     }
   }
 };

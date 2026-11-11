@@ -6,7 +6,7 @@ CV personal en formato web, con estética de consola. Sitio estático: HTML, CSS
 
 - **Tema claro / oscuro** — detecta la preferencia del sistema y recuerda la elección (`localStorage`).
 - **Español / Inglés** — todo el contenido vive en [`assets/js/data.js`](assets/js/data.js); cada idioma tiene su propia página (`/` y `/es/`).
-- **Descarga en PDF** — el botón `PDF` descarga un fichero ya generado (`assets/pdf/`), uno por idioma. Se construyen con [`tools/build-pdf.ps1`](tools/build-pdf.ps1), que imprime `index.html` con la hoja de estilos de impresión usando Chrome headless.
+- **Descarga en PDF** — el botón `PDF` descarga un CV de una página en inglés, en formato Harvard de una sola columna (legible por ATS), desde ambas páginas (`/` y `/es/`). Se genera con [`tools/build-pdf.ps1`](tools/build-pdf.ps1), que imprime [`tools/pdf/harvard.html`](tools/pdf/harvard.html) con Chrome headless a partir del bloque `ats` de `data.js`.
 - El **teléfono no está en ninguna parte de este repositorio**. Ocultarlo con CSS
   no habría servido: seguiría en el HTML, legible para buscadores y scrapers — y el
   PDF servido desde aquí es igual de público e indexable. Vive en

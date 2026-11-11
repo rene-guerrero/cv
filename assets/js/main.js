@@ -223,7 +223,7 @@
 
     document.title = "René Guerrero Pérez — " + t.hero.role;
 
-    var file = "Rene-Guerrero-CV-" + lang.toUpperCase() + ".pdf";
+    var file = "Rene-Guerrero-CV-EN.pdf";
     document.querySelectorAll("[data-pdf]").forEach(function (pdf) {
       pdf.setAttribute("href", BASE + "assets/pdf/" + file);
       pdf.setAttribute("download", file);

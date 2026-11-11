@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>René Guerrero Pérez — CV</title>
+<style>
+  @page { size: Letter; margin: 0.45in 0.55in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "Times New Roman", "Liberation Serif", "TeX Gyre Termes", Times, serif;
+    font-size: 10.2pt;
+    line-height: 1.27;
+    color: #000;
+    background: #fff;
+    max-width: 8.5in;
+    margin: 0 auto;
+  }
+  header { text-align: center; margin-bottom: 6pt; }
+  header p { text-align: center; }
+  h1 { font-size: 20pt; font-weight: bold; letter-spacing: 0.3pt; }
+  .title { font-size: 11.5pt; margin-top: 1pt; }
+  .contact { font-size: 10pt; margin-top: 1pt; }
+  .contact span { white-space: nowrap; }
+  .contact span + span::before { content: "| "; }
+  a { color: #000; text-decoration: none; }
+  h2 {
+    font-size: 11pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.6pt;
+    border-bottom: 0.75pt solid #000;
+    padding-bottom: 1pt;
+    margin: 8pt 0 3pt;
+  }
+  p { text-align: justify; }
+  .skills p { text-align: left; margin-bottom: 1.5pt; }
+  .row { display: flex; justify-content: space-between; gap: 12pt; }
+  .row .r { white-space: nowrap; }
+  .job { margin-bottom: 4pt; break-inside: avoid; }
+  .job .row:first-child { font-weight: bold; }
+  .job .row + .row { font-style: italic; }
+  ul { margin: 2pt 0 0 14pt; }
+  li { margin-bottom: 1pt; text-align: justify; }
+  .certs li { text-align: left; }
+  .note { font-style: italic; }
+</style>
+</head>
+<body>
+<main id="cv"></main>
+<script src="../../assets/js/data.js"></script>
+<script src="../../assets/js/certs.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var lang = "en";
+  var tel = q.get("tel");
+  var d = window.CV[lang].ats;
+
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+
+  function ym(v) {
+    var p = String(v || "").split("-");
+    if (p.length < 2) return esc(v || "");
+    return months[parseInt(p[1], 10) - 1] + " " + p[0];
+  }
+
+  var contact = [
+    "<span>" + esc(d.location) + "</span>",
+    tel ? "<span>" + esc(d.phoneLabel) + ": " + esc(tel) + "</span>" : "",
+    '<span><a href="mailto:renegue1256@gmail.com">renegue1256@gmail.com</a></span>'
+  ].filter(Boolean).join(" ") + '</p><p class="contact">' + [
+    '<span><a href="https://www.linkedin.com/in/rguerrero00/">linkedin.com/in/rguerrero00</a></span>',
+    '<span><a href="https://github.com/rene-guerrero">github.com/rene-guerrero</a></span>',
+    '<span><a href="https://rene-guerrero.github.io/cv/">rene-guerrero.github.io/cv</a></span>'
+  ].join(" ");
+
+  var skills = d.skills.concat([{ name: d.sections.languages, items: d.languages }]).map(function (g) {
+    return "<p><strong>" + esc(g.name) + ":</strong> " + esc(g.items) + "</p>";
+  }).join("");
+
+  var jobs = d.jobs.map(function (j) {
+    return '<div class="job">' +
+      '<div class="row"><span>' + esc(j.role) + '</span><span class="r">' + esc(j.when) + "</span></div>" +
+      '<div class="row"><span>' + esc(j.company) + '</span><span class="r">' + esc(j.place) + "</span></div>" +
+      "<ul>" + j.bullets.map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + "</ul>" +
+      "</div>";
+  }).join("");
+
+  var e = d.education;
+  var edu = '<div class="job">' +
+    '<div class="row"><span>' + esc(e.degree) + '</span><span class="r">' + esc(e.when) + "</span></div>" +
+    '<div class="row"><span>' + esc(e.school) + '</span><span class="r">' + esc(e.place) + "</span></div>" +
+    '<p class="note">' + esc(e.note) + "</p></div>";
+
+  var certs = (window.CERTS || []).slice().sort(function (a, b) {
+    return String(b.issued).localeCompare(String(a.issued));
+  }).slice(0, d.certCount).map(function (c) {
+    return "<li>" + esc(c.name) + " — " + esc(c.issuer) + ", " + ym(c.issued) + "</li>";
+  }).join("");
+
+  document.getElementById("cv").innerHTML =
+    "<header><h1>René Guerrero Pérez</h1>" +
+    '<p class="title">' + esc(d.title) + "</p>" +
+    '<p class="contact">' + contact + "</p></header>" +
+    "<section><h2>" + esc(d.sections.summary) + "</h2><p>" + esc(d.summary) + "</p></section>" +
+    '<section class="skills"><h2>' + esc(d.sections.skills) + "</h2>" + skills + "</section>" +
+    "<section><h2>" + esc(d.sections.experience) + "</h2>" + jobs + "</section>" +
+    "<section><h2>" + esc(d.sections.education) + "</h2>" + edu + "</section>" +
+    (certs ? '<section class="certs"><h2>' + esc(d.sections.certs) + "</h2><ul>" + certs + "</ul></section>" : "");
+})();
+</script>
+</body>
+</html>

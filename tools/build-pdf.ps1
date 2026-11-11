@@ -24,7 +24,7 @@
 [CmdletBinding()]
 param(
     [int]$Port = 4399,
-    [string[]]$Languages = @('en', 'es')
+    [string[]]$Languages = @('en')
 )
 
 $ErrorActionPreference = 'Stop'
@@ -116,7 +116,7 @@ try {
             '--virtual-time-budget=6000'
             '--no-pdf-header-footer'
             "--print-to-pdf=$out"
-            ("http://127.0.0.1:$Port/" + $job.Query)
+            ("http://127.0.0.1:$Port/tools/pdf/harvard.html" + $job.Query)
         )
 
         # a hung headless browser must not wedge the build
