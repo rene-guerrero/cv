@@ -15,7 +15,7 @@ window.CV = {
       emailMe: "Escríbeme",
       exp: "8+ años de experiencia",
       remote: "Remoto",
-      location: "Holguín, Cuba · hora de Cuba (UTC−5, UTC−4 en verano)",
+      location: "La Habana, Cuba · hora de Cuba (UTC−5, UTC−4 en verano)",
       available: "Disponible para propuestas",
       english: "Inglés",
       fluent: "Fluido",
@@ -153,7 +153,7 @@ window.CV = {
       emailMe: "Email me",
       exp: "8+ years of experience",
       remote: "Remote",
-      location: "Holguín, Cuba · Cuba time (UTC−5, UTC−4 in summer)",
+      location: "Havana, Cuba · Cuba time (UTC−5, UTC−4 in summer)",
       available: "Open to opportunities",
       english: "English",
       fluent: "Fluent",
@@ -276,7 +276,7 @@ window.CV = {
     },
     ats: {
       title: "Senior Full Stack Software Engineer",
-      location: "Holguín, Cuba (UTC−5) · Remote",
+      location: "Havana, Cuba (UTC−5) · Remote",
       phoneLabel: "Phone",
       sections: {
         summary: "Professional Summary",
