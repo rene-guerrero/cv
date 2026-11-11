@@ -99,6 +99,17 @@ window.CV = {
           ]
         },
         {
+          company: "Universidad de Holguín",
+          role: "Profesor de Programación (tiempo parcial)",
+          when: "ene – jun 2023",
+          where: "Holguín, Cuba",
+          current: false,
+          bullets: [
+            "Impartí **Fundamentos de Programación** a estudiantes universitarios con **Java y Python**, con foco en conceptos básicos de programación y resolución de problemas.",
+            "Diseñé ejercicios de laboratorio y tareas, impartí las clases prácticas y califiqué el trabajo de los estudiantes."
+          ]
+        },
+        {
           company: "Freelance",
           role: "Desarrollador de Software",
           when: "2018 – 2020",
@@ -106,7 +117,7 @@ window.CV = {
           current: false,
           bullets: [
             "Construí plataformas web y aplicaciones Android para estudios de fotografía, con **React, Angular, Vue, Django, Python, Java y PostgreSQL** según el proyecto.",
-            "Construí un bot de Telegram sobre la **API de Moodle** para la gestión automatizada de ficheros."
+            "Construí un bot de Telegram que automatizaba la gestión de ficheros integrándose con APIs de plataformas de terceros."
           ]
         }
       ]
@@ -237,6 +248,17 @@ window.CV = {
           ]
         },
         {
+          company: "University of Holguín",
+          role: "Programming Instructor (Part-time)",
+          when: "Jan – Jun 2023",
+          where: "Holguín, Cuba",
+          current: false,
+          bullets: [
+            "Taught **Programming Fundamentals** to undergraduate students using **Java and Python**, covering core programming concepts and problem solving.",
+            "Designed lab exercises and assignments, ran hands-on lab sessions, and graded student work."
+          ]
+        },
+        {
           company: "Freelance",
           role: "Software Developer",
           when: "2018 – 2020",
@@ -244,7 +266,7 @@ window.CV = {
           current: false,
           bullets: [
             "Built web platforms and Android apps for photography studios, using **React, Angular, Vue, Django, Python, Java and PostgreSQL** depending on the project.",
-            "Built a Telegram bot on the **Moodle API** for automated file management."
+            "Built a Telegram bot that automated file management by integrating with third-party platform APIs."
           ]
         }
       ]
@@ -309,13 +331,22 @@ window.CV = {
           ]
         },
         {
+          role: "Programming Instructor (Part-time)",
+          company: "University of Holguín",
+          place: "Holguín, Cuba",
+          when: "Jan 2023 – Jun 2023",
+          bullets: [
+            "Taught Programming Fundamentals in Java and Python to undergraduates; designed lab exercises and assignments, ran lab sessions and graded student work."
+          ]
+        },
+        {
           role: "Freelance Software Developer",
           company: "Self-employed",
           place: "Remote",
           when: "2018 – 2020",
           bullets: [
             "Delivered web platforms and Android apps for photography studios using React, Angular, Vue, Django, Python, Java and PostgreSQL.",
-            "Automated file management with a Telegram bot built on the Moodle API."
+            "Built a Telegram bot that automated file management by integrating with third-party platform APIs."
           ]
         }
       ],
@@ -326,7 +357,7 @@ window.CV = {
         when: "2018 – 2022",
         note: "Thesis: Public Key Infrastructure (PKI) built on EJBCA."
       },
-      certCount: 4,
+      certCount: 3,
       languages: "English (Fluent), Spanish (Native)"
     }
   }
